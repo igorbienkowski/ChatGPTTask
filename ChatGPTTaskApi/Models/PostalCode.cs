@@ -2,6 +2,6 @@
 
 public class PostalCode
 {
-    public string format { get; set; }
-    public string regex { get; set; }
+    public string? Format { get; set; }
+    public string? Regex { get; set; }
 }

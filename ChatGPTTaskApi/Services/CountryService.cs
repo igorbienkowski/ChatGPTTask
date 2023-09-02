@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using ChatGPTTaskApi.Models;
+﻿using ChatGPTTaskApi.Models;
 using Newtonsoft.Json;
 
 namespace ChatGPTTaskApi.Services;
@@ -18,6 +17,6 @@ public class CountryService : ICountryService
     public async Task<IEnumerable<Country>> GetAllCountriesAsync()
     {
         var response = await _httpClient.GetStringAsync($"{BaseUrl}/all");
-        return JsonConvert.DeserializeObject<IEnumerable<Country>>(response);
+        return JsonConvert.DeserializeObject<IEnumerable<Country>>(response)!;
     }
 }

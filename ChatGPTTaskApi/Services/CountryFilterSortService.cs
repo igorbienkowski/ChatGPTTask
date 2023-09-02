@@ -7,9 +7,9 @@ public class CountryFilterSortService : ICountryFilterSortService
     public IEnumerable<Country> FilterByName(IEnumerable<Country> countries, string filter)
     {
         filter = filter.Trim().ToLower();
-        return countries.Where(c => c.Cca2.ToLower().Contains(filter) 
-                                    || c.Cca3.ToLower().Contains(filter) 
-                                    || c.Name.Common.ToLower().Contains(filter));
+        return countries.Where(c => c.Cca2!.ToLower().Contains(filter) 
+                                    || c.Cca3!.ToLower().Contains(filter) 
+                                    || c.Name!.Common!.ToLower().Contains(filter));
     }
 
     public IEnumerable<Country> FilterByPopulation(IEnumerable<Country> countries, int maxPopulationInMillions)
@@ -19,7 +19,7 @@ public class CountryFilterSortService : ICountryFilterSortService
 
     public IEnumerable<Country> SortByName(IEnumerable<Country> countries)
     {
-        return countries.OrderBy(c => c.Name.Common);
+        return countries.OrderBy(c => c.Name!.Common);
     }
     
     public IEnumerable<Country> Paginate(IEnumerable<Country> countries, int recordsLimit)

@@ -2,6 +2,6 @@
 
 public class CoatOfArms
 {
-    public string Png { get; set; }
-    public string Svg { get; set; }
+    public string? Png { get; set; }
+    public string? Svg { get; set; }
 }
