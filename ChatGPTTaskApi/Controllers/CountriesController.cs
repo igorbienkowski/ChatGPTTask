@@ -9,25 +9,36 @@ namespace ChatGPTTaskApi.Controllers;
 public class CountriesController : ControllerBase
 {
     private readonly ICountryService _countryService;
+    private readonly ICountryFilterSortService _filterSortService;
 
-    public CountriesController(ICountryService countryService)
+    public CountriesController(ICountryService countryService, ICountryFilterSortService filterSortService)
     {
         _countryService = countryService;
+        _filterSortService = filterSortService;
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Country>> Get([FromQuery] string? filter, [FromQuery] int? maxPopulationInMillions = null)
+    public async Task<IEnumerable<Country>> Get([FromQuery] string? filter, 
+        [FromQuery] int? maxPopulationInMillions,
+        [FromQuery] bool sortByName = false)
     {
+        IEnumerable<Country> countries = await _countryService.GetAllCountriesAsync();
+
         if (!string.IsNullOrEmpty(filter))
         {
-            return await _countryService.GetCountriesByNameAsync(filter);
+            countries = _filterSortService.FilterByName(countries, filter);
         }
-    
+        
         if (maxPopulationInMillions.HasValue)
         {
-            return await _countryService.GetCountriesByPopulationAsync(maxPopulationInMillions.Value);
+            countries = _filterSortService.FilterByPopulation(countries, maxPopulationInMillions.Value);
         }
 
-        return await _countryService.GetAllCountriesAsync();
+        if (sortByName)
+        {
+            countries = _filterSortService.SortByName(countries);
+        }
+
+        return countries;
     }
 }

@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ICountryService, CountryService>();
+builder.Services.AddScoped<ICountryFilterSortService, CountryFilterSortService>();
 builder.Services.AddHttpClient(); // Add the HttpClient services.
 
 var app = builder.Build();
