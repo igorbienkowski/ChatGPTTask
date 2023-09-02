@@ -51,5 +51,6 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"igorbienkowski_ChatGPTTask" /o:"igorbienkowski" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
           dotnet build .\ChatGPTTaskApi\.
+          dotnet build .\ChatGPTTaskApi.Tests\.
           dotnet test .\ChatGPTTaskApi.Tests\ --no-build --logger trx --collect:"XPlat Code Coverage" /p:CoverletOutputFormat=opencover
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
