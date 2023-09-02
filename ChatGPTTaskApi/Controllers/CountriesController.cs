@@ -16,13 +16,18 @@ public class CountriesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Country>> Get(string filter = "")
+    public async Task<IEnumerable<Country>> Get([FromQuery] string? filter, [FromQuery] int? maxPopulationInMillions = null)
     {
-        if (string.IsNullOrWhiteSpace(filter))
+        if (!string.IsNullOrEmpty(filter))
         {
-            return await _countryService.GetAllCountriesAsync();
+            return await _countryService.GetCountriesByNameAsync(filter);
         }
     
-        return await _countryService.GetCountriesByNameAsync(filter);
+        if (maxPopulationInMillions.HasValue)
+        {
+            return await _countryService.GetCountriesByPopulationAsync(maxPopulationInMillions.Value);
+        }
+
+        return await _countryService.GetAllCountriesAsync();
     }
 }

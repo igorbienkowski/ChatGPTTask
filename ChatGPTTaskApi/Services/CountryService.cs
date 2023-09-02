@@ -21,17 +21,23 @@ public class CountryService : ICountryService
         return JsonConvert.DeserializeObject<IEnumerable<Country>>(response);
     }
     
-    public async Task<IEnumerable<Country>> GetCountriesByNameAsync(string filter = "")
+    public async Task<IEnumerable<Country>> GetCountriesByNameAsync(string? filter)
     {
-        var countries = await GetAllCountriesAsync();
+        var allCountries = await GetAllCountriesAsync();
 
             filter = filter.Trim().ToLower();
-            countries = countries.ToList()
-                .Where(
+            allCountries = allCountries.Where(
                     c => c.Cca2.ToLower().Contains(filter) 
                          ||c.Cca3.ToLower().Contains(filter) 
                          || c.Name.Common.ToLower().Contains(filter)).ToList();
 
-        return countries;
+        return allCountries;
+    }
+    
+    public async Task<IEnumerable<Country>> GetCountriesByPopulationAsync(int? maxPopulationInMillions)
+    {
+        var allCountries = await GetAllCountriesAsync();
+    
+        return allCountries.Where(country => country.Population < maxPopulationInMillions * 1_000_000);
     }
 }
