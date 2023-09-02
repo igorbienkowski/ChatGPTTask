@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ICountryService, CountryService>();
 builder.Services.AddScoped<ICountryFilterSortService, CountryFilterSortService>();
+builder.Services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
 builder.Services.AddHttpClient(); // Add the HttpClient services.
 
 var app = builder.Build();
