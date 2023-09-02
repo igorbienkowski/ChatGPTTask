@@ -21,4 +21,9 @@ public class CountryFilterSortService : ICountryFilterSortService
     {
         return countries.OrderBy(c => c.Name.Common);
     }
+    
+    public IEnumerable<Country> Paginate(IEnumerable<Country> countries, int recordsLimit)
+    {
+        return countries.Take(recordsLimit);
+    }
 }

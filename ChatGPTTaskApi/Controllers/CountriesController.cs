@@ -18,8 +18,9 @@ public class CountriesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Country>> Get([FromQuery] string? filter, 
+    public async Task<IEnumerable<Country>> Get([FromQuery] string? filter,
         [FromQuery] int? maxPopulationInMillions,
+        [FromQuery] int? recordsLimit,
         [FromQuery] bool sortByName = false)
     {
         IEnumerable<Country> countries = await _countryService.GetAllCountriesAsync();
@@ -37,6 +38,11 @@ public class CountriesController : ControllerBase
         if (sortByName)
         {
             countries = _filterSortService.SortByName(countries);
+        }
+        
+        if (recordsLimit.HasValue)
+        {
+            countries = _filterSortService.Paginate(countries, recordsLimit.Value);
         }
 
         return countries;
