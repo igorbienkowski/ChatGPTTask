@@ -1,6 +1,4 @@
-﻿using ChatGPTTaskApi.Services;
-
-namespace ChatGPTTaskApi.Models;
+﻿namespace ChatGPTTaskApi.Models;
 
 public class Country
 {

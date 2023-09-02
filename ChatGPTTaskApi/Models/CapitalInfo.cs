@@ -1,4 +1,4 @@
-﻿namespace ChatGPTTaskApi.Services;
+﻿namespace ChatGPTTaskApi.Models;
 
 public class CapitalInfo
 {
