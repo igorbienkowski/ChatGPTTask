@@ -4,35 +4,35 @@ namespace ChatGPTTaskApi.Models;
 
 public class Country
 {
-    public Name name { get; set; }
-    public List<string> tld { get; set; }
-    public string cca2 { get; set; }
-    public string ccn3 { get; set; }
-    public string cca3 { get; set; }
-    public bool independent { get; set; }
-    public string status { get; set; }
-    public bool unMember { get; set; }
-    public Dictionary<string, Currency> currencies { get; set; }
-    public Idd idd { get; set; }
-    public List<string> capital { get; set; }
-    public List<string> altSpellings { get; set; }
-    public string region { get; set; }
-    public string subregion { get; set; }
-    public Dictionary<string, string> languages { get; set; }
-    public Dictionary<string, Translation> translations { get; set; }
-    public List<double> latlng { get; set; }
-    public bool landlocked { get; set; }
-    public double area { get; set; }
-    public Dictionary<string, Demonym> demonyms { get; set; }
-    public string flag { get; set; }
-    public Maps maps { get; set; }
-    public int population { get; set; }
-    public Car car { get; set; }
-    public List<string> timezones { get; set; }
-    public List<string> continents { get; set; }
-    public Flags flags { get; set; }
-    public CoatOfArms coatOfArms { get; set; }
-    public string startOfWeek { get; set; }
-    public CapitalInfo capitalInfo { get; set; }
-    public PostalCode postalCode { get; set; }
+    public Name Name { get; set; }
+    public List<string> Tld { get; set; }
+    public string Cca2 { get; set; }
+    public string Ccn3 { get; set; }
+    public string Cca3 { get; set; }
+    public bool Independent { get; set; }
+    public string Status { get; set; }
+    public bool UnMember { get; set; }
+    public Dictionary<string, Currency> Currencies { get; set; }
+    public Idd Idd { get; set; }
+    public List<string> Capital { get; set; }
+    public List<string> AltSpellings { get; set; }
+    public string Region { get; set; }
+    public string Subregion { get; set; }
+    public Dictionary<string, string> Languages { get; set; }
+    public Dictionary<string, Translation> Translations { get; set; }
+    public List<double> Latlng { get; set; }
+    public bool Landlocked { get; set; }
+    public double Area { get; set; }
+    public Dictionary<string, Demonym> Demonyms { get; set; }
+    public string Flag { get; set; }
+    public Maps Maps { get; set; }
+    public int Population { get; set; }
+    public Car Car { get; set; }
+    public List<string> Timezones { get; set; }
+    public List<string> Continents { get; set; }
+    public Flags Flags { get; set; }
+    public CoatOfArms CoatOfArms { get; set; }
+    public string StartOfWeek { get; set; }
+    public CapitalInfo CapitalInfo { get; set; }
+    public PostalCode PostalCode { get; set; }
 }

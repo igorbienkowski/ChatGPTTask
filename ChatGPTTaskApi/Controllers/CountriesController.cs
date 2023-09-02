@@ -16,8 +16,13 @@ public class CountriesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Country>> Get()
+    public async Task<IEnumerable<Country>> Get(string filter = "")
     {
-        return await _countryService.GetAllCountriesAsync();
+        if (string.IsNullOrWhiteSpace(filter))
+        {
+            return await _countryService.GetAllCountriesAsync();
+        }
+    
+        return await _countryService.GetCountriesByNameAsync(filter);
     }
 }

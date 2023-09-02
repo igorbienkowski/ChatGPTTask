@@ -17,7 +17,21 @@ public class CountryService : ICountryService
 
     public async Task<IEnumerable<Country>> GetAllCountriesAsync()
     {
-        var response = await _httpClient.GetStringAsync($"{BaseUrl}/name/pol");
+        var response = await _httpClient.GetStringAsync($"{BaseUrl}/all");
         return JsonConvert.DeserializeObject<IEnumerable<Country>>(response);
+    }
+    
+    public async Task<IEnumerable<Country>> GetCountriesByNameAsync(string filter = "")
+    {
+        var countries = await GetAllCountriesAsync();
+
+            filter = filter.Trim().ToLower();
+            countries = countries.ToList()
+                .Where(
+                    c => c.Cca2.ToLower().Contains(filter) 
+                         ||c.Cca3.ToLower().Contains(filter) 
+                         || c.Name.Common.ToLower().Contains(filter)).ToList();
+
+        return countries;
     }
 }
